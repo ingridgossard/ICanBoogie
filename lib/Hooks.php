@@ -26,9 +26,8 @@ class Hooks
      * Decorates the template resolver with an {@link ApplicationTemplateResolver} instance.
      *
      * @param TemplateResolver\AlterEvent $event
-     * @param TemplateResolver $target
      */
-    static public function alter_template_resolver(TemplateResolver\AlterEvent $event, TemplateResolver $target)
+    static public function alter_template_resolver(TemplateResolver\AlterEvent $event)
     {
         $event->replace_with(new ApplicationTemplateResolver($event->instance, get_autoconfig()['app-paths']));
     }

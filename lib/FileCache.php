@@ -49,6 +49,14 @@ class FileCache
 		$this->root = realpath(DOCUMENT_ROOT . $this->repository);
 	}
 
+	private function assert_root()
+	{
+		if (!is_dir($this->root))
+		{
+			throw new \Exception(format('The repository %repository does not exists.', [ '%repository' => $this->repository ], 404));
+		}
+	}
+
 	/**
 	 * Check if a file exists in the repository.
 	 *
@@ -69,10 +77,7 @@ class FileCache
 	 */
 	public function get($file, $constructor, $userdata=null)
 	{
-		if (!is_dir($this->root))
-		{
-			throw new \Exception(format('The repository %repository does not exists.', [ '%repository' => $this->repository ], 404));
-		}
+		$this->assert_root();
 
 		$location = getcwd();
 
@@ -119,15 +124,7 @@ class FileCache
 	 */
 	public function load($key, $constructor, $userdata=null)
 	{
-		#
-		# if the repository does not exists we simply return the contents
-		# created by the constructor.
-		#
-
-		if (!is_dir($this->root))
-		{
-			throw new \Exception(format('The repository %repository does not exists.', [ '%repository' => $this->repository ], 404));
-		}
+		$this->assert_root();
 
 		$location = getcwd();
 

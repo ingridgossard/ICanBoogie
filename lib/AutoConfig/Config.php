@@ -198,8 +198,10 @@ class Config
 				switch ($key)
 				{
 					case 'config-constructor':
+					case 'autoconfig-filters':
+					case 'app-paths':
 
-						$config[$key] = array_merge($config[$key], $value);
+						$config[$key] = array_merge($config[$key], (array) $value);
 
 						break;
 
@@ -227,21 +229,10 @@ class Config
 
 						break;
 
-					case 'autoconfig-filters':
-
-						$config[$key] = array_merge($config[$key], (array) $value);
-
-						break;
 
 					case 'app-root':
 
 						$config[$key] = $value;
-
-						break;
-
-					case 'app-paths':
-
-						$config[$key] = array_merge($config[$key], (array) $value);
 
 						break;
 				}

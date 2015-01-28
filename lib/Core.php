@@ -210,7 +210,7 @@ class Core extends Object
 	 * When the time zone is set the default time zone is also set with
 	 * {@link date_default_timezone_set()}.
 	 *
-	 * @param \ICanBoogie\Timezone|string|int $timezone An instance of {@link TimeZone},
+	 * @param TimeZone|string|int $timezone An instance of {@link TimeZone},
 	 * the name of a time zone, or numeric equivalent e.g. 3600.
 	 */
 	protected function set_timezone($timezone)
@@ -231,7 +231,7 @@ class Core extends Object
 	 * If the time zone is not defined yet it defaults to the value of
 	 * {@link date_default_timezone_get()} or "UTC".
 	 *
-	 * @return string
+	 * @return TimeZone
 	 */
 	protected function get_timezone()
 	{
@@ -347,7 +347,7 @@ class Core extends Object
 	 *
 	 * @param string|Route $pattern_or_route_id_or_route A pattern, a route identifier or a
 	 * {@link Route} instance.
-	 * @param string $params
+	 * @param array $params
 	 *
 	 * @return string
 	 */
