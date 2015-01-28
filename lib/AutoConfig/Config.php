@@ -20,6 +20,8 @@ class Config
 {
 	protected $packages;
 	protected $destination;
+	protected $composer_schema;
+	protected $icanboogie_schema;
 	protected $filesystem;
 	protected $validator;
 	protected $fragments = [];

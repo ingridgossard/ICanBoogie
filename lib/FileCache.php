@@ -370,10 +370,17 @@ class FileCache
 
 	/**
 	 * Clear all the files in the repository.
+	 *
+	 * @return int The number of files unlinked.
 	 */
 	public function clear()
 	{
 		$files = $this->read();
+
+		if (!$files)
+		{
+			return 0;
+		}
 
 		return $this->unlink($files);
 	}

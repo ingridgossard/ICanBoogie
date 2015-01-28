@@ -16,6 +16,7 @@ namespace ICanBoogie;
  *
  * @property string $remote_agent_hash The remote user agent hash of the request that created the
  * session.
+ * @property Logger $icanboogie_logger
  * @property string $token A token that can be used to prevent cross-site request forgeries.
  */
 class Session
