@@ -276,12 +276,7 @@ class Core extends Object
 
 		Debug::configure($this->configs['debug']);
 		Prototype::configure($this->configs['prototypes']);
-
-		Events::patch('get', function() {
-
-			return $this->events;
-
-		});
+		Events::patch('get', function() { return $this->events; });
 
 		new Core\BootEvent($this);
 
@@ -353,11 +348,10 @@ class Core extends Object
 	 * @param string|Route $pattern_or_route_id_or_route A pattern, a route identifier or a
 	 * {@link Route} instance.
 	 * @param string $params
-	 * @param array $options
 	 *
 	 * @return string
 	 */
-	public function generate_path($pattern_or_route_id_or_route, $params=null, array $options=[])
+	public function generate_path($pattern_or_route_id_or_route, $params=null)
 	{
 		if ($pattern_or_route_id_or_route instanceof Route)
 		{
@@ -379,9 +373,9 @@ class Core extends Object
 		return Routing\contextualize($path);
 	}
 
-	public function generate_url($pattern_or_route_id_or_route, $params=null, array $options=[])
+	public function generate_url($pattern_or_route_id_or_route, $params=null)
 	{
-		return $this->site->url . $this->generate_path($pattern_or_route_id_or_route, $params, $options);
+		return $this->site->url . $this->generate_path($pattern_or_route_id_or_route, $params);
 	}
 }
 

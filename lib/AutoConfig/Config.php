@@ -62,6 +62,7 @@ class Config
 
 		foreach ($packages as $pi)
 		{
+			/* @var $package Package */
 			list($package, $pathname) = $pi;
 
 			$pathname = realpath($pathname);
@@ -72,7 +73,7 @@ class Config
 				$weight = 10;
 			}
 
-			$fragment = $this->resolve_fragment($package, $pathname);
+			$fragment = $this->resolve_fragment($pathname);
 
 			if (!$fragment)
 			{
@@ -89,12 +90,11 @@ class Config
 	/**
 	 * Resolve the autoconfig fragment of a package.
 	 *
-	 * @param Package $package Package.
 	 * @param string $pathname The pathname to the package.
 	 *
 	 * @return mixed|null The autoconfig fragment, or `null` if the package doesn't define one.
 	 */
-	protected function resolve_fragment(Package $package, $pathname)
+	protected function resolve_fragment($pathname)
 	{
 		#
 		# Trying "extra/icanboogie" in "composer.json".

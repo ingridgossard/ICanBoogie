@@ -40,8 +40,10 @@
 	},
 
 	"require-dev": {
+		"icanboogie/module": "~2.1",
 		"icanboogie/activerecord": "~2.1",
-		"icanboogie/i18n": "~2.0"
+		"icanboogie/i18n": "~2.0",
+		"composer/composer": "dev-master"
 	},
 
 	"suggest": {

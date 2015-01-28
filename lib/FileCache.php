@@ -269,11 +269,18 @@ class FileCache
 		return $files;
 	}
 
+	/**
+	 * Unlink files.
+	 *
+	 * @param array $files
+	 *
+	 * @return int The number of files unlinked.
+	 */
 	protected function unlink($files)
 	{
 		if (!$files)
 		{
-			return;
+			return 0;
 		}
 
 		#
@@ -292,11 +299,11 @@ class FileCache
 
 		if (!$lh)
 		{
-			Debug::trigger('Unable to lock %repository', [ '%repository' => $this->repository ]);
+			trigger_error(format('Unable to lock %repository', [ '%repository' => $this->repository ]), E_USER_ERROR);
 
 			chdir($location);
 
-			return;
+			return 0;
 		}
 
 		#
@@ -324,13 +331,15 @@ class FileCache
 
 				chdir($location);
 
-				return;
+				return 0;
 			}
 		}
 
 		#
 		# The lock was obtained, we can now delete the files
 		#
+
+		$n = 0;
 
 		foreach ($files as $file => $dummy)
 		{
@@ -344,6 +353,7 @@ class FileCache
 				continue;
 			}
 
+			$n++;
 			unlink($file);
 		}
 
@@ -354,6 +364,8 @@ class FileCache
 		#
 
 		fclose($lh);
+
+		return $n;
 	}
 
 	/**
