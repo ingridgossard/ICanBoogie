@@ -18,15 +18,45 @@ use Composer\Package\RootPackage;
 
 class Config
 {
+	/**
+	 * @var Package[]
+	 */
 	protected $packages;
+
+	/**
+	 * @var string
+	 */
 	protected $destination;
+
+	/**
+	 * @var Schema
+	 */
 	protected $composer_schema;
+
+	/**
+	 * @var Schema
+	 */
 	protected $icanboogie_schema;
+
+	/**
+	 * @var Filesystem
+	 */
 	protected $filesystem;
-	protected $validator;
+
+	/**
+	 * @var array
+	 */
 	protected $fragments = [];
+
+	/**
+	 * @var array
+	 */
 	protected $weights = [];
 
+	/**
+	 * @param Package[] $packages
+	 * @param string $destination
+	 */
 	public function __construct(array $packages, $destination)
 	{
 		$this->packages = $packages;
@@ -367,7 +397,7 @@ EOT;
 		{
 			file_put_contents($this->destination, $this->render());
 
-			echo "Created autoconfig in {$this->destination}\n";
+			echo "Created Autoconfig in {$this->destination}\n";
 		}
 		catch (\Exception $e)
 		{
